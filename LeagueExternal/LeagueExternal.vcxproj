@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\Dom\source\repos\LeagueExternal\Dependencies\opencv\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Dom\source\repos\LeagueExternal\Dependencies\opencv\build\x64\vc16\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Dom\source\repos\LeagueExternal\dependencies\json;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Dom\source\repos\LeagueExternal\dependencies\curl\x64 release\lib;$(LibraryPath)</LibraryPath>
     <LinkIncremental>
     </LinkIncremental>
   </PropertyGroup>
@@ -125,7 +125,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\Dom\source\repos\LeagueExternal\Dependencies\opencv\build\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\imgui;C:\Users\Dom\source\repos\LeagueExternal\dependencies;C:\Users\Dom\source\repos\LeagueExternal\dependencies\curl\x64 release\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -136,11 +136,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;opencv_world490.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;libcurl_a.lib;Normaliz.lib;Ws2_32.lib;Wldap32.lib;Crypt32.lib;advapi32.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="external\Core\Game.cpp" />
+    <ClCompile Include="external\Core\SDK\Champions.cpp" />
+    <ClCompile Include="external\Core\SDK\requests.cpp" />
+    <ClCompile Include="external\Core\SDK\Utlis.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -153,9 +156,14 @@
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="external\Core\Drawing.h" />
     <ClInclude Include="external\Core\Game.h" />
+    <ClInclude Include="external\Core\SDK\activeplayer.h" />
+    <ClInclude Include="external\Core\SDK\Champions.h" />
     <ClInclude Include="external\Core\SDK\Entities.h" />
+    <ClInclude Include="external\Core\SDK\requests.h" />
     <ClInclude Include="external\Core\SDK\structs.h" />
+    <ClInclude Include="external\Core\SDK\Utlis.h" />
     <ClInclude Include="external\imgui\imconfig.h" />
     <ClInclude Include="external\imgui\imgui.h" />
     <ClInclude Include="external\imgui\imgui_impl_dx11.h" />
@@ -165,6 +173,7 @@
     <ClInclude Include="external\imgui\imstb_textedit.h" />
     <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="external\menu.h" />
+    <ClInclude Include="external\Settings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

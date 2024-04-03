@@ -1,4 +1,5 @@
 #include "structs.h"
+#include "activeplayer.h"
 
 class Entity
 {
@@ -16,6 +17,11 @@ private:
 	vector2 root_offset{ 0,0 };
 };
 
+struct AbilityRange {
+	vector2 vScreenRange{ 0,0 };
+	vector2 vScreenOffset{ 0,0 };
+	float Modifer = 0.0f;
+};
 
 class LocalPlayer : public Entity
 {
@@ -24,12 +30,20 @@ public:
 	LocalPlayer(vector2 origin) : Entity(origin) {};
 
 public:
+	championStats stats;
 	vector2 vScreenAARange{ 0,0 };
-
+	bool bQAbility;
+	vector2 vQRange{ 0,0 };
+	bool bWAbility;
+	vector2 vWRange{ 0,0 };
+	bool bEAbility;
+	vector2 vERange{ 0,0 };
+	bool bRAbility;
+	vector2 vRRange{ 0,0 };
 public:
-	bool IsInside(Entity e, float threshold = 1.0f) {
-		float r = (e.origin.x - origin.x) * (e.origin.x - origin.x) / (vScreenAARange.x * vScreenAARange.x)
-			+ (e.origin.y - origin.y) * (e.origin.y - origin.y) / (vScreenAARange.y * vScreenAARange.y);
+	bool IsInside(Entity e, vector2 vRange, float threshold = 1.0f) {
+		float r = (e.origin.x - origin.x) * (e.origin.x - origin.x) / (vRange.x * vRange.x)
+			+ (e.origin.y - (origin.y + 95)) * (e.origin.y - (origin.y + 95)) / (vRange.y * vRange.y);
 		if (r <= threshold)
 			return true;
 		return false;

@@ -4,6 +4,9 @@
 #include <chrono>
 #include <future>
 #include "SDK/Entities.h"
+#include "SDK/requests.h"
+#include "SDK/Utlis.h"
+#include "../Settings.h"
 
 class Game
 {
@@ -13,12 +16,13 @@ public:
 
 public:
 	LocalPlayer* localPlayer;
-	std::vector<Enemy> enemiesList;
-	std::vector<Minion> minionsList;
+	std::vector<Enemy> enemies;
+	std::vector<Minion> minions;
 	float gameTime;
-
+	Utils utils;
 public:
 	void Update();
+	Enemy* GetClosestEnemy(vector2 ref);
 private:
 	HWND hGameWindow;
 	BITMAP GameImage;
@@ -29,7 +33,7 @@ private:
 	float fElapsedTime;
 
 	LocalPlayer b_localPlayer;
-	std::vector<Enemy> p_enemiesList;
+	std::vector<Enemy> p_enemies;
 
 	Enemy closestEnemy;
 
@@ -40,5 +44,7 @@ private:
 
 private:
 	void WindowCapture();
+	void GetLocalPlayerData();
+	void GetEnemiesData();
 };
 

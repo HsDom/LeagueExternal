@@ -1,4 +1,7 @@
 C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\Core\Game.cpp;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\x64\Release\Game.obj
+C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\Core\SDK\Champions.cpp;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\x64\Release\Champions.obj
+C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\Core\SDK\requests.cpp;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\x64\Release\requests.obj
+C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\Core\SDK\Utlis.cpp;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\x64\Release\Utlis.obj
 C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\imgui\imgui.cpp;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\x64\Release\imgui.obj
 C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\imgui\imgui_demo.cpp;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\x64\Release\imgui_demo.obj
 C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\external\imgui\imgui_draw.cpp;C:\Users\Dom\source\repos\LeagueExternal\LeagueExternal\x64\Release\imgui_draw.obj

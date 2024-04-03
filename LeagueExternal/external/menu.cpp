@@ -30,6 +30,9 @@ DiscordOverlay::DiscordOverlay(Game* game)
 
 	this->game = game;
 
+	// Initialize champions
+	Champions::Initialize();
+
 	printf("DiscordOverlay created\n");
 
 }
@@ -228,9 +231,33 @@ bool DiscordOverlay::Initialize(){
 }
 
 
+const char* championNames[] = { "Twitch", "Jinx"};
+int currentChampion = 0;
 void DiscordOverlay::MenuRender() {
-	ImGui::Begin("Hala OrbWalker WadBot Private", nullptr, ImGuiWindowFlags_NoResize);
-	ImGui::SetWindowSize(ImVec2(500, 400));
-	ImGui::Checkbox("Example", &Settings::Example);
+
+	ImGui::Begin("Champion Select", nullptr, ImGuiWindowFlags_NoResize);
+	ImGui::SetWindowSize(ImVec2(300, 170));
+	if (ImGui::Combo("Champion", &currentChampion, championNames, IM_ARRAYSIZE(championNames))) {
+		std::string championName = championNames[currentChampion];
+		Champion Info = Champions::getChampion(championName);
+		SelectedChampion::AttackWindup = Info.AttackWindup;
+		SelectedChampion::AARange = Info.AARange;
+		SelectedChampion::QRange = Info.QRange;
+		SelectedChampion::WRange = Info.WRange;
+		SelectedChampion::ERange = Info.ERange;
+		SelectedChampion::RRange = Info.RRange;
+	}
+	ImGui::Separator();
+	ImGui::Text("Attack Windup: %.2f", SelectedChampion::AttackWindup);
+	ImGui::Text("AA Range: %.2f", SelectedChampion::AARange);
+	ImGui::Text("Q Range: %.2f", SelectedChampion::QRange);
+	ImGui::Text("W Range: %.2f", SelectedChampion::WRange);
+	ImGui::Text("E Range: %.2f", SelectedChampion::ERange);
+	ImGui::Text("R Range: %.2f", SelectedChampion::RRange);
+	ImGui::End();
+
+	ImGui::Begin("Orb Walker", nullptr, ImGuiWindowFlags_NoResize);
+	ImGui::SetWindowSize(ImVec2(400, 300));
+	ImGui::Checkbox("Enabled", &OrbWalker::Enabled);
 	ImGui::End();
 }

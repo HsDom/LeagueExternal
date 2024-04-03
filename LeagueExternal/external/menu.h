@@ -8,15 +8,14 @@
 #include <mutex>
 #include "../Core/SDK/structs.h"
 #include "../Core/Game.h"
+#include "../Core/SDK/Champions.h"
+#include "Settings.h"
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
 #include <d3d11.h>
 
 
-namespace Settings {
-	extern bool Example;
-}
 
 class DiscordOverlay {
 public:
