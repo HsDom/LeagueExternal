@@ -240,24 +240,39 @@ void DiscordOverlay::MenuRender() {
 	if (ImGui::Combo("Champion", &currentChampion, championNames, IM_ARRAYSIZE(championNames))) {
 		std::string championName = championNames[currentChampion];
 		Champion Info = Champions::getChampion(championName);
+		//Set Windup
 		SelectedChampion::AttackWindup = Info.AttackWindup;
-		SelectedChampion::AARange = Info.AARange;
-		SelectedChampion::QRange = Info.QRange;
-		SelectedChampion::WRange = Info.WRange;
-		SelectedChampion::ERange = Info.ERange;
-		SelectedChampion::RRange = Info.RRange;
+		// Set Auto Ability
+		SelectedChampion::AutoAblity::Range = Info.AutoAblity.Range;
+		SelectedChampion::AutoAblity::OriginOffset = Info.AutoAblity.OriginOffset;
+		SelectedChampion::AutoAblity::Modifier = Info.AutoAblity.Modifier;
+		// Set Q Ability
+		SelectedChampion::QAblity::Range = Info.QAblity.Range;
+		SelectedChampion::QAblity::OriginOffset = Info.QAblity.OriginOffset;
+		SelectedChampion::QAblity::Modifier = Info.QAblity.Modifier;
+		// Set W Ability
+		SelectedChampion::WAblity::Range = Info.WAblity.Range;
+		SelectedChampion::WAblity::OriginOffset = Info.WAblity.OriginOffset;
+		SelectedChampion::WAblity::Modifier = Info.WAblity.Modifier;
+		// Set E Ability
+		SelectedChampion::EAblity::Range = Info.EAblity.Range;
+		SelectedChampion::EAblity::OriginOffset = Info.EAblity.OriginOffset;
+		SelectedChampion::EAblity::Modifier = Info.EAblity.Modifier;
+		// Set R Ability
+		SelectedChampion::RAblity::Range = Info.RAblity.Range;
+		SelectedChampion::RAblity::OriginOffset = Info.RAblity.OriginOffset;
+		SelectedChampion::RAblity::Modifier = Info.RAblity.Modifier;
 	}
 	ImGui::Separator();
 	ImGui::Text("Attack Windup: %.2f", SelectedChampion::AttackWindup);
-	ImGui::Text("AA Range: %.2f", SelectedChampion::AARange);
-	ImGui::Text("Q Range: %.2f", SelectedChampion::QRange);
-	ImGui::Text("W Range: %.2f", SelectedChampion::WRange);
-	ImGui::Text("E Range: %.2f", SelectedChampion::ERange);
-	ImGui::Text("R Range: %.2f", SelectedChampion::RRange);
 	ImGui::End();
 
 	ImGui::Begin("Orb Walker", nullptr, ImGuiWindowFlags_NoResize);
 	ImGui::SetWindowSize(ImVec2(400, 300));
 	ImGui::Checkbox("Enabled", &OrbWalker::Enabled);
+	ImGui::SliderInt("Origin X", &OrbWalker::originx, 0, 1000);
+	ImGui::SliderInt("Origin Y", &OrbWalker::originy, 0, 1000);
+	ImGui::SliderInt("X", &OrbWalker::x, 0, 1000);
+	ImGui::SliderInt("Y", &OrbWalker::y, 0, 1000);
 	ImGui::End();
 }

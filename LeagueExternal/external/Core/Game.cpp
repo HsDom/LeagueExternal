@@ -135,7 +135,7 @@ void Game::WindowCapture()
 			
 			// Local Player
 			if (pixel[2] == 101 && pixel[1] == 216 && pixel[0] == 93) {
-				vector2 origin = { (float)ReadX+ 40, (float)ReadY+ 150 };
+				vector2 origin = { (float)ReadX+ 40, (float)ReadY+ 135 };
 				b_localPlayer = { origin };
 
 				AbilityCooldown(b_localPlayer.bQAbility, CoolDownQ, pixelData, GameImage);
@@ -198,34 +198,41 @@ void Game::GetLocalPlayerData() {
 
 	b_localPlayer.stats = j["activePlayer"]["championStats"];
 
-	// bad approx
-	float a = h / w;
+	// HARD CODED / WASTED SO MUCH TIME TO HARD CODE IT IN THE END
+	// I WANT TO CRY
+	float aspectRatio = h / w ;
 
-	float Modifer = 170.0f;
-	// Auto Attack Range
-	float fScreenAARangeRadius = b_localPlayer.stats.attackRange * (1 - a) + 170.0f;
+	float fScreenAARangeRadius = b_localPlayer.stats.attackRange * (1 - aspectRatio) + SelectedChampion::AutoAblity::Modifier;
 	b_localPlayer.vScreenAARange.x = fScreenAARangeRadius;
 	b_localPlayer.vScreenAARange.y = fScreenAARangeRadius * cos(35.f * 3.1415f / 180.f);
 
 	// Q Range
-	float fQRangeRadius = SelectedChampion::QRange * (1 - a) + Modifer;
-	b_localPlayer.vQRange.x = fQRangeRadius;
-	b_localPlayer.vQRange.y = fQRangeRadius * cos(35.f * 3.1415f / 180.f);
+	if (SelectedChampion::QAblity::Range > 0) {
+		float fQRangeRadius = SelectedChampion::QAblity::Range * (1 - aspectRatio) + SelectedChampion::QAblity::Modifier;
+		b_localPlayer.vScreenQRange.x = fQRangeRadius;
+		b_localPlayer.vScreenQRange.y = fQRangeRadius * cos(35.f * 3.1415f / 180.f);
+	}
 
 	// W Range
-	float fWRangeRadius = SelectedChampion::WRange * (1 - a) + 235.0f;
-	b_localPlayer.vWRange.x = fWRangeRadius;
-	b_localPlayer.vWRange.y = fWRangeRadius * cos(35.f * 3.1415f / 180.f);
+	if (SelectedChampion::WAblity::Range > 0) {
+		float fWRangeRadius = SelectedChampion::WAblity::Range * (1 - aspectRatio) + SelectedChampion::WAblity::Modifier;
+		b_localPlayer.vScreenWRange.x = fWRangeRadius;
+		b_localPlayer.vScreenWRange.y = fWRangeRadius * cos(35.f * 3.1415f / 180.f);
+	}
 
 	// E Range
-	float fERangeRadius = SelectedChampion::ERange * (1 - a) + Modifer;
-	b_localPlayer.vERange.x = fERangeRadius;
-	b_localPlayer.vERange.y = fERangeRadius * cos(35.f * 3.1415f / 180.f);
+	if (SelectedChampion::EAblity::Range > 0) {
+		float fERangeRadius = SelectedChampion::EAblity::Range * (1 - aspectRatio) + SelectedChampion::EAblity::Modifier;
+		b_localPlayer.vScreenERange.x = fERangeRadius;
+		b_localPlayer.vScreenERange.y = fERangeRadius * cos(35.f * 3.1415f / 180.f);
+	}
 
 	// R Range
-	float fRRangeRadius = SelectedChampion::RRange * (1 - a) + Modifer;
-	b_localPlayer.vRRange.x = fRRangeRadius;
-	b_localPlayer.vRRange.y = fRRangeRadius * cos(35.f * 3.1415f / 180.f);
+	if (SelectedChampion::RAblity::Range > 0) {
+		float fRRangeRadius = SelectedChampion::RAblity::Range * (1 - aspectRatio) + SelectedChampion::RAblity::Modifier;
+		b_localPlayer.vScreenRRange.x = fRRangeRadius;
+		b_localPlayer.vScreenRRange.y = fRRangeRadius * cos(35.f * 3.1415f / 180.f);
+	}
 }
 
 void Game::GetEnemiesData(){
